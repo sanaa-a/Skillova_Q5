@@ -1,0 +1,42 @@
+# Category 5: Data Analysis
+
+## Problem
+The dataset contained messy customer support ticket records with missing "Resolution Time" values and extreme outliers. The goal was to clean the data and find basic insights, specifically the average resolution time and which ticket category takes the longest to solve.
+
+## Cleaning Process & Critical Analysis
+
+1. **Outlier Detection**  
+   I used the **Interquartile Range (IQR) method**, a standard approach as this is how I was taught in statisctics.
+   - Calculated Q1 (25th percentile) and Q3 (75th percentile).  
+   - IQR = Q3 - Q1  
+   - Lower bound = Q1 - 1.5 × IQR  
+   - Upper bound = Q3 + 1.5 × IQR  
+
+   **Why IQR?**  
+   It is better than estimatimating my own values. I can't use mean as my reference as the outliers change values drastically.
+
+2. **Other Cleaning Steps**  
+   - Fixed typos in the column (e.g., "Data Sync Issu3" → "Data Sync Issue").  
+   - Filled missing `resolution_time_hours` values with the **median** (better than global mean because different categories have different complexities).
+
+## Key Insights (After Cleaning)
+
+- **Overall Average Resolution Time**: **122.47 hours**
+- **Top 5 Categories with Longest Average Resolution Time**:
+
+| Category                | Average Hours |
+|-------------------------|---------------|
+| Data Sync Issue         | 149.31       |
+| Payment Problem         | 127.71       |
+| Bug Report              | 126.33       |
+| Account Suspension      | 125.74       |
+| Feature Request         | 122.56       |
+
+## Visualizations
+- Bar chart showing average resolution time by category.
+- Histogram showing the distribution of resolution times after cleaning.
+
+## Conclusion & Recommendation
+Data Sync and Payment-related issues take the longest to resolve. The team should investigate these categories further (root cause analysis, better tools, or specialized training) to reduce resolution time and improve customer satisfaction.
+
+**Files Included**: `synthetic_customer_support_tickets_messy.csv`, analysis notebook, and graphs.
